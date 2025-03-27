@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Container Styling */
+        .container {
+            width: 90%;
+            max-width: 400px;
+            margin: 50px auto;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Form Heading */
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Input Fields */
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        /* Focus Effect */
+        input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        /* Submit Button */
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease-in-out;
+        }
+
+        /* Button Hover Effect */
+        button:hover {
+            background: #0056b3;
+        }
+
+        /* Error Styles */
+        input.error {
+            border-color: red;
+            background-color: #ffe6e6;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: -5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" required placeholder="Enter your full name">
+            <div class="error-message" id="nameError">This is a required question</div>
+
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" required placeholder="Enter your email">
+            <div class="error-message" id="emailError">This is a required question</div>
+
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" required placeholder="Enter your phone number">
+            <div class="error-message" id="phoneError">This is a required question</div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevents actual form submission
+
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let phone = document.getElementById("phone").value.trim();
+            
+            let isValid = true;
+
+            // Validation
+            if (name === "") {
+                document.getElementById("name").classList.add("error");
+                document.getElementById("nameError").style.display = "block";
+                isValid = false;
+            } else {
+                document.getElementById("name").classList.remove("error");
+                document.getElementById("nameError").style.display = "none";
+            }
+
+            if (email === "") {
+                document.getElementById("email").classList.add("error");
+                document.getElementById("emailError").style.display = "block";
+                isValid = false;
+            } else {
+                document.getElementById("email").classList.remove("error");
+                document.getElementById("emailError").style.display = "none";
+            }
+            if (phone === "") {
+                document.getElementById("phone").classList.add("error");
+                document.getElementById("phoneError").style.display = "block";
+                isValid = false;
+            } else {
+                document.getElementById("phone").classList.remove("error");
+                document.getElementById("phoneError").style.display = "none";
+            }
+
+            if (!isValid) return;
+
+            let message = Hello, my name is ${name}. My email is ${email} and my phone number is ${phone}.;
+            let whatsappURL = https://wa.me/0728369489?text=${encodeURIComponent(message)};
+            
+            window.location.href = whatsappURL; // Redirect to WhatsApp chat
+        });
+    </script>
+
+</body>
+</html>
